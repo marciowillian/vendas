@@ -1,7 +1,8 @@
-package com.mwcc.domain.service;
+package com.mwcc.domain.service.impl;
 
 import com.mwcc.domain.entity.Produto;
 import com.mwcc.domain.repository.Produtos;
+import com.mwcc.domain.service.ProdutoService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @AllArgsConstructor
-public class ProdutoServiceImpl implements ProdutoService{
+public class ProdutoServiceImpl implements ProdutoService {
     private final Produtos produtos;
 
     private static final String MSG_PRODUTO_NAO_ENCONTRADO = "Produto não encontrado.";
