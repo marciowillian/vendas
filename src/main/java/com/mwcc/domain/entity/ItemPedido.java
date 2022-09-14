@@ -27,5 +27,4 @@ public class ItemPedido {
     @Column
     private Integer quantidade;
 
-
 }
