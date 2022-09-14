@@ -1,5 +1,8 @@
 package com.mwcc.domain.service;
 
-public interface PedidoService {
+import com.mwcc.domain.dto.PedidoDTO;
+import com.mwcc.domain.entity.Pedido;
 
+public interface PedidoService {
+    Pedido salvar(PedidoDTO pedidoDTO);
 }
