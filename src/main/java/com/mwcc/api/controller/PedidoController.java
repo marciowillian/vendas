@@ -1,5 +1,6 @@
 package com.mwcc.api.controller;
 
+import com.mwcc.domain.dto.InformacoesPedidoDTO;
 import com.mwcc.domain.dto.PedidoDTO;
 import com.mwcc.domain.entity.Pedido;
 import com.mwcc.domain.repository.Pedidos;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -40,5 +42,11 @@ public class PedidoController {
         Example example = Example.of(pedidoFiltro, matcher);
         List<Pedido> lista = pedidos.findAll(example);
         return lista;
+    }
+    @GetMapping("{id")
+    public InformacoesPedidoDTO getById(@PathVariable Integer id){
+        return pedidoService.obterPedidoCompleto(id)
+                .map()
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 }
