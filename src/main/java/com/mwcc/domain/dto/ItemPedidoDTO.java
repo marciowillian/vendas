@@ -1,5 +1,6 @@
 package com.mwcc.domain.dto;
 
+import com.mwcc.domain.entity.Produto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ItemPedidoDTO {
 
-    private Integer produto;
+    private Produto produto;
     private Integer quantidade;
 
 }
