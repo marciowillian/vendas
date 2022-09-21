@@ -7,6 +7,7 @@ import com.mwcc.domain.entity.Cliente;
 import com.mwcc.domain.entity.ItemPedido;
 import com.mwcc.domain.entity.Pedido;
 import com.mwcc.domain.entity.Produto;
+import com.mwcc.domain.enums.StatusPedido;
 import com.mwcc.domain.repository.Clientes;
 import com.mwcc.domain.repository.ItensPedido;
 import com.mwcc.domain.repository.Pedidos;
@@ -40,6 +41,7 @@ public class PedidoServiceImpl implements PedidoService {
         pedido.setTotal(pedidoDTO.getTotal());
         pedido.setDataPedido(LocalDate.now());
         pedido.setCliente(cliente);
+        pedido.setStatus(StatusPedido.REALIZADO);
 
         List<ItemPedido> itens = converterItens(pedido, pedidoDTO.getItens());
         pedidos.save(pedido);

@@ -1,5 +1,6 @@
 package com.mwcc.domain.dto;
 
+import com.mwcc.domain.enums.StatusPedido;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,4 +21,5 @@ public class InformacoesPedidoDTO {
     private BigDecimal total;
     private String dataPedido;
     private List<InformacoesItemPedidoDTO> itens;
+    private String status;
 }

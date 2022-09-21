@@ -1,5 +1,6 @@
 package com.mwcc.domain.entity;
 
+import com.mwcc.domain.enums.StatusPedido;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -27,6 +28,10 @@ public class Pedido {
 
     @Column(name = "total", length = 20, precision = 2)
     private BigDecimal total;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private StatusPedido status;
 
     @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itens;
