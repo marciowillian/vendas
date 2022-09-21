@@ -1,5 +1,6 @@
 package com.mwcc.domain.service.impl;
 
+import com.mwcc.api.exception.PedidoNaoEncontradoException;
 import com.mwcc.api.exception.RegraNegocioException;
 import com.mwcc.domain.dto.ItemPedidoDTO;
 import com.mwcc.domain.dto.PedidoDTO;
@@ -53,6 +54,17 @@ public class PedidoServiceImpl implements PedidoService {
     @Override
     public Optional<Pedido> obterPedidoCompleto(Integer idPedido) {
         return pedidos.findByIdFetchItens(idPedido);
+    }
+
+    @Override
+    @Transactional
+    public void atualizarStatus(Integer id, StatusPedido statusPedido) {
+        pedidos
+                .findById(id)
+                .map(pedido -> {
+                    pedido.setStatus(statusPedido);
+                    return pedidos.save(pedido);
+                }).orElseThrow(() -> new PedidoNaoEncontradoException());
     }
 
     private List<ItemPedido> converterItens(Pedido pedido ,List<ItemPedidoDTO> itens){

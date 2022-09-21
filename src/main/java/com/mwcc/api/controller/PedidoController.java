@@ -1,11 +1,9 @@
 package com.mwcc.api.controller;
 
-import com.mwcc.domain.dto.InformacoesItemPedidoDTO;
-import com.mwcc.domain.dto.InformacoesPedidoDTO;
-import com.mwcc.domain.dto.ItemPedidoDTO;
-import com.mwcc.domain.dto.PedidoDTO;
+import com.mwcc.domain.dto.*;
 import com.mwcc.domain.entity.ItemPedido;
 import com.mwcc.domain.entity.Pedido;
+import com.mwcc.domain.enums.StatusPedido;
 import com.mwcc.domain.repository.Pedidos;
 import com.mwcc.domain.service.PedidoService;
 import lombok.AllArgsConstructor;
@@ -55,6 +53,12 @@ public class PedidoController {
         return pedidoService.obterPedidoCompleto(id)
                 .map( p -> converter(p))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pedido não encontrado."));
+    }
+
+    @PatchMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateStatus(@PathVariable Integer id, @RequestBody AtualizacaoStatusPedidoDTO dto){
+        pedidoService.atualizarStatus(id, StatusPedido.valueOf(dto.getNovoStatus()));
     }
 
     private InformacoesPedidoDTO converter(Pedido pedido){
