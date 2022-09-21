@@ -50,7 +50,7 @@ public class PedidoController {
         List<Pedido> lista = pedidos.findAll(example);
         return lista;
     }
-    @GetMapping("{id")
+    @GetMapping("{id}")
     public InformacoesPedidoDTO getById(@PathVariable Integer id){
         return pedidoService.obterPedidoCompleto(id)
                 .map( p -> converter(p))

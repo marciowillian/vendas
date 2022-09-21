@@ -61,7 +61,7 @@ public class PedidoServiceImpl implements PedidoService {
         return itens
                 .stream()
                 .map(itemPedidoDTO -> {
-                    Integer idProduto = itemPedidoDTO.getProduto().getId();
+                    Integer idProduto = itemPedidoDTO.getProduto();
                     Produto produto = produtosRepository
                             .findById(idProduto)
                                 .orElseThrow(() -> new RegraNegocioException("Código de produto inválido: " + idProduto));
